@@ -6,11 +6,14 @@
     <div class="media-body">
         <h2 class="article-title" href="#">{{ object.title }}</h2>
         <p class="article-content">{{ object.content }}</p>
-        <div class="article-metadata">
-        </div>
+        <div class="article-metadata"></div>
         <a class="mr-2" href="#">{{ object.author }}</a>
         <small class="text-muted">{{ object.date_posted }}</small>
     </div>
+    {% if user == object.author %}
+     <a type="submit" class="btn btn-info align-self-end mr-1 " href="{% url 'post-update' object.id %}">Update</a>
+     <a type="submit" class="btn btn-secondary align-self-end " href="{% url 'post-delete' object.id %}">Delete</a>
+     {% endif %}
 </article>
 {% endblock content %}
 
