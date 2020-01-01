@@ -11,18 +11,13 @@ from django.contrib.auth.mixins import (    LoginRequiredMixin,
                                             UserPassesTestMixin
                                         )
 
-def home(request):
-    context = {
-        'posts' : Post.objects.all()
-    }
-    return render(request, 'blog/home.html', context)
-
 #home
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
+    paginate_by = 10     # passes page_obj to template
 
 #post detailed 
 class PostDetailView(DetailView):
